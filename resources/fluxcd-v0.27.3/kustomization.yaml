@@ -1,0 +1,51 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - fluxcd.yaml
+  - fluxcd-priorityclass.yaml
+
+patches:
+- target:
+    kind: Deployment
+    name: "(kustomize-controller|helm-controller|notification-controller)"
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: all
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manager
+              resources:
+                requests:
+                  cpu: 20m
+- target:
+    kind: Deployment
+    name: "source-controller"
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: all
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manager
+              resources:
+                requests:
+                  cpu: 10m
+- target:
+    kind: Deployment
+    name: "(kustomize-controller|helm-controller|notification-controller|source-controller)"
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: all
+    spec:
+      template:
+        spec:
+          priorityClassName: fluxcd-priorityclass

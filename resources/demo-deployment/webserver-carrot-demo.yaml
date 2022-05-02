@@ -1,0 +1,24 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: carrot-app
+  labels:
+    app: carrot
+spec:
+  containers:
+    - name: carrot-app
+      image: hashicorp/http-echo
+      args:
+        - "-text=This is the Carrot Pod!"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: carrot-service
+spec:
+  selector:
+    app: carrot
+  ports:
+    - port: 5678 # Default port for image
+      targetPort: 5678

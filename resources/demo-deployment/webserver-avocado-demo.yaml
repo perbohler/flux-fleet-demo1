@@ -1,0 +1,24 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: avocado-app
+  labels:
+    app: avocado
+spec:
+  containers:
+    - name: avocado-app
+      image: hashicorp/http-echo
+      args:
+        - "-text=This is the avocado Pod!"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: avocado-service
+spec:
+  selector:
+    app: avocado
+  ports:
+    - port: 5678 # Default port for image
+      targetPort: 5678
