@@ -1,21 +1,31 @@
----
-kind: Pod
-apiVersion: v1
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: carrot-app
   labels:
-    app: carrot
+    app: carrot-app
+  name: carrot-app
+  namespace: ninjaspace
 spec:
-  containers:
-    - name: carrot-app
-      image: hashicorp/http-echo
-      args:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: carrot-app
+  template:
+    metadata:
+      labels:
+        app: carrot-app
+    spec:
+      containers:
+      - image: hashicorp/http-echo
+        name: http-echo
+        args:
         - "-text=This is the Carrot Pod!"
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: carrot-service
+  namespace: ninjaspace
 spec:
   selector:
     app: carrot
