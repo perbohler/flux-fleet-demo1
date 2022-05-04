@@ -1,21 +1,32 @@
 ---
-kind: Pod
-apiVersion: v1
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: avocado-app
   labels:
-    app: avocado
+    app: avocado-app
+  name: avocado-app
+  namespace: ninjaspace
 spec:
-  containers:
-    - name: avocado-app
-      image: hashicorp/http-echo
-      args:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: avocado-app
+  template:
+    metadata:
+      labels:
+        app: avocado-app
+    spec:
+      containers:
+      - image: hashicorp/http-echo
+        name: http-echo
+        args:
         - "-text=This is the avocado Pod!"
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: avocado-service
+  namespace: ninjaspace
 spec:
   selector:
     app: avocado
