@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../resources/demo-deployment/
   - ../resources/kind-ingress-nginx/
+  - github-source-auto.yaml
 
 patches:
 - target:
