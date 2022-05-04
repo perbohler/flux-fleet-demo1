@@ -19,7 +19,7 @@ spec:
       - image: hashicorp/http-echo
         name: http-echo
         args:
-        - "-text=This is the Carrot Pod!"
+        - "-text=This is the CARROT pod!"
 ---
 kind: Service
 apiVersion: v1
@@ -28,7 +28,7 @@ metadata:
   namespace: ninjaspace
 spec:
   selector:
-    app: carrot
+    app: carrot-app
   ports:
-    - port: 5678 # Default port for image
-      targetPort: 5678
+    - port: 5678 
+      targetPort: 5678 # Default port for image

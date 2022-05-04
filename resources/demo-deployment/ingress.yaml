@@ -22,5 +22,4 @@ spec:
             service:
               name: avocado-service
               port:
-                number: 5678
-  # host: aks-ninja-blue.per.no
+                number: 8080
