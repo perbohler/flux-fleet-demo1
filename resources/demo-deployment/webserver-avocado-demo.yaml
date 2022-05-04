@@ -29,7 +29,7 @@ metadata:
   namespace: ninjaspace
 spec:
   selector:
-    app: avocado
+    app: avocado-app
   ports:
     - port: 5678 # Default port for image
       targetPort: 5678
