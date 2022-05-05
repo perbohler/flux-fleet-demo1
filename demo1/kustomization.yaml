@@ -16,4 +16,4 @@ patches:
     metadata:
       name: all
     spec:
-      replicas: 2
+      replicas: 4
