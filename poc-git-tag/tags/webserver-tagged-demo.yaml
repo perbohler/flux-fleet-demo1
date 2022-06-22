@@ -14,7 +14,7 @@ metadata:
   name: tagged-app
   namespace: tagbased
 spec:
-  replicas: 9
+  replicas: 2
   selector:
     matchLabels:
       app: tagged-app
