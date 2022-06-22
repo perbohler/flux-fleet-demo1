@@ -6,8 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30s
-  path: ./poc-git-tag/branch
+  path: ./poc-git-tag/tags
   prune: true
   sourceRef:
     kind: GitRepository
-    name: github-branch
+    name: github-tags

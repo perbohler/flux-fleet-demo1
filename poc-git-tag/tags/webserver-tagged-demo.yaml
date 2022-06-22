@@ -3,40 +3,40 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    name: ninjaspace
-  name: ninjaspace
+    name: tagbased
+  name: tagbased
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: avocado-app
-  name: avocado-app
-  namespace: ninjaspace
+    app: tagged-app
+  name: tagged-app
+  namespace: tagbased
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: avocado-app
+      app: tagged-app
   template:
     metadata:
       labels:
-        app: avocado-app
+        app: tagged-app
     spec:
       containers:
       - image: hashicorp/http-echo
         name: http-echo
         args:
-        - "-text=This is the AVOCADO pod!"
+        - "-text=This is the tagged pod!"
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: avocado-service
-  namespace: ninjaspace
+  name: tagged-service
+  namespace: tagbased
 spec:
   selector:
-    app: avocado-app
+    app: tagged-app
   ports:
     - port: 8080 
       targetPort: 5678 # Default port for image
@@ -46,16 +46,16 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo-ingress
-  namespace: ninjaspace
+  namespace: tagbased
 spec:
   ingressClassName: nginx
   rules:
   - http:
       paths:
-        - path: /avocado
+        - path: /tagged
           pathType: Prefix
           backend:
             service:
-              name: avocado-service
+              name: tagged-service
               port:
                 number: 8080
