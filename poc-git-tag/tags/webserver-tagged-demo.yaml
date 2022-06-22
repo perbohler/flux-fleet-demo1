@@ -1,0 +1,61 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: tagbased
+  name: tagbased
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tagged-app
+  name: tagged-app
+  namespace: tagbased
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: tagged-app
+  template:
+    metadata:
+      labels:
+        app: tagged-app
+    spec:
+      containers:
+      - image: hashicorp/http-echo
+        name: http-echo
+        args:
+        - "-text=This is the tagged pod!"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: tagged-service
+  namespace: tagbased
+spec:
+  selector:
+    app: tagged-app
+  ports:
+    - port: 8080 
+      targetPort: 5678 # Default port for image
+---
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: tagbased
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+        - path: /tagged
+          pathType: Prefix
+          backend:
+            service:
+              name: tagged-service
+              port:
+                number: 8080

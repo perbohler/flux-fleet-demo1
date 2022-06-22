@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name:  github-tags
+  namespace: flux-system
+spec:
+  gitImplementation: libgit2
+  interval: 1m
+  url: ssh://git@github.com/perbohler/flux-fleet-demo1
+  ref:
+    branch: git-tags
+  secretRef:
+    name: github-token
