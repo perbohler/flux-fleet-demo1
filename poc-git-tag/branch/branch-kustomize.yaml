@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30s
-  path: ./poc-git-tag
+  path: ./poc-git-tag/branch
   prune: true
   sourceRef:
     kind: GitRepository
