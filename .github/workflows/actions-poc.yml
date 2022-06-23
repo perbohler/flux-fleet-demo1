@@ -41,7 +41,7 @@ jobs:
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions pipeline "
-          git config user.email "<per.bohler@gmail.com>"
+          git config user.email "<>"
           cd ${{ github.workspace }}
           git commit -am "updates image tag"
           git tag -d six
