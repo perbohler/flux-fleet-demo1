@@ -33,11 +33,11 @@ jobs:
           cd ${{ github.workspace }}/poc-git-tags/tags
           kustomize edit set image http-echo:hashicorp/http-echo:latest{tag}
 
-  - name: Commit and push
-    run: |
-      cd ${{ github.workspace }}
-      git commit -am "updates image tag"
-      git tag -d six
-      git push origin :refs/tagsd/six
-      git tag six
-      git push --tags
+      - name: Commit and push
+        run: |
+          cd ${{ github.workspace }}
+          git commit -am "updates image tag"
+          git tag -d six
+          git push origin :refs/tagsd/six
+          git tag six
+          git push --tags
