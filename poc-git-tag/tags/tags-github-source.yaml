@@ -8,6 +8,6 @@ spec:
   interval: 1m
   url: ssh://git@github.com/perbohler/flux-fleet-demo1
   ref:
-    branch: git-tags
+    tag: six
   secretRef:
     name: github-token
