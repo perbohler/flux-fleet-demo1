@@ -34,7 +34,7 @@ jobs:
       - name: Switch out image tag
         run: |
           cd ${{ github.workspace }}/poc-git-tag/tags
-          kustomize edit set image http-echo:hashicorp/http-echo:latest{tag}
+          kustomize edit set image http-echo:hashicorp/http-echo:latest
 
       - name: Commit and push
         run: |
