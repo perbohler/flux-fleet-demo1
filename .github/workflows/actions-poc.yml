@@ -5,6 +5,7 @@ on:
       first-actions-pipeline
 jobs:
   Explore-GitHub-Actions:
+    name: this is the job to demo
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -19,6 +20,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
   My-new-job:
+    name: this is my update image jobß
     runs-on: ubuntu-latest
     steps:
       - name: Setup Kustomize
