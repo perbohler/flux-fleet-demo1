@@ -49,4 +49,4 @@ jobs:
           git tag -d six
           git push origin :refs/tags/six
           git tag six
-          git push --tags
+          git push --tags --set-upstream origin ${{ github.ref }}
