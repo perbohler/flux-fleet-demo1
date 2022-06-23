@@ -45,6 +45,6 @@ jobs:
           cd ${{ github.workspace }}
           git commit -am "updates image tag"
           git tag -d six
-          git push origin :refs/tags/six
+#          git push origin :refs/tags/six
           git tag six
           git push --tags
