@@ -22,10 +22,10 @@ jobs:
   build-mock-job:
     name: this job pretends to build an image
     runs-on: ubuntu-latest
-#    outputs:
-#      imagename: ${{ steps.imagebuildstep.outputs.myname }}
-#      imagerepo: ${{ steps.imagebuildstep.outputs.repo }}
-#      imagetag: ${{ steps.imagebuildstep.outputs.tag }}
+    outputs:
+      imagename: ${{ steps.imagebuildstep.outputs.myname }}
+      imagerepo: ${{ steps.imagebuildstep.outputs.repo }}
+      imagetag: ${{ steps.imagebuildstep.outputs.tag }}
     steps:
       - id: imagebuildstep
         run: |
@@ -55,8 +55,8 @@ jobs:
       - name: Switch out image tag
         run: |
           cd ${{ github.workspace }}/poc-git-tag/tags
-#          kustomize edit set image http-echo:hashicorp/http-echo:latest
           kustomize edit set image ${{needs.build-mock-job.outputs.imagename}}/${{needs.build-mock-job.outputs.imagerepo}}/${{needs.build-mock-job.outputs.imagetag}}
+#          kustomize edit set image http-echo:hashicorp/http-echo:latest
 
 
       - name: Commit and push
