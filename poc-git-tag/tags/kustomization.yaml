@@ -4,6 +4,6 @@ resources:
 - webserver-tagged-demo.yaml
 images:
 - name: http-echo:hashicorp/http-echo
-  newTag: latest
+  newTag: alpine
 - name: http-echo:percorp/http-echo
   newTag: latest
