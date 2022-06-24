@@ -23,9 +23,9 @@ jobs:
     name: this job pretends to build an image
     runs-on: ubuntu-latest
     outputs:
-      imagename: ${{ steps.imagebuildstep.myname }}
-      imagerepo: ${{ steps.imagebuildstep.repo }}
-      imagetag: ${{ steps.imagebuildstep.tag }}
+      imagename: ${{ steps.imagebuildstep.outputs.myname }}
+      imagerepo: ${{ steps.imagebuildstep.outputs.repo }}
+      imagetag: ${{ steps.imagebuildstep.outputs.tag }}
     steps:
       - name: mock image builder
         id: imagebuildstep
