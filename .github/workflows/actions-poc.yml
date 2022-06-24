@@ -27,11 +27,10 @@ jobs:
       imagerepo: ${{ steps.imagebuildstep.outputs.repo }}
       imagetag: ${{ steps.imagebuildstep.outputs.tag }}
     steps:
-      - name: mock image builder
-        id: imagebuildstep
+      - id: imagebuildstep
         run: |
         myimagename="http-echo"
-        echo "::set-output name=myname::${myimagename}"
+        echo "::set-output name=myname::http-echo"
         myimagerepo="hashicorp/http-echo"
         echo "::set-output name=repo::${myimagerepo}"
         myimagetag="alpine"
