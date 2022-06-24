@@ -19,9 +19,28 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-  My-new-job:
+  build-mock-job:
+    name: this job pretends to build an image
+    runs-on: ubuntu-latest
+    outputs:
+      imagename: ${{ steps.imagebuildstep.name }}
+      imagerepo: ${{ steps.imagebuildstep.repo }}
+      imagetag: ${{ steps.imagebuildstep.tag }}
+    steps:
+      - name: mock image builder
+        id: imagebuildstep
+        run: |
+        myimagename="http-echo"
+        echo "::set-output name=name::$myimagename"
+        myimagerepo="hashicorp/http-echo"
+        echo "::set-output name=repo::$myimagerepo"
+        myimagetag="alpine"
+        echo "::set-output name=tag::$myimagetag"
+
+  My-kustomize-job:
     name: this is my update image jobß
     runs-on: ubuntu-latest
+    needs: build-mock-job
     steps:
       - name: Setup Kustomize
         uses: imranismail/setup-kustomize@v1
@@ -34,11 +53,12 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.ref }}
 
-
       - name: Switch out image tag
         run: |
           cd ${{ github.workspace }}/poc-git-tag/tags
           kustomize edit set image http-echo:hashicorp/http-echo:latest
+#          kustomize edit set image ${{needs.build-mock-job.outputs.imagename}}/${{needs.build-mock-job.outputs.imagerepo}}/${{needs.build-mock-job.outputs.imagetag}}
+
 
       - name: Commit and push
         run: |
