@@ -29,7 +29,7 @@ jobs:
     steps:
       - id: imagebuildstep
         run: |
-        myimagename="http-echo"
+          myimagename="http-echo"
 #       echo "::set-output name=myname::http-echo"
 #        myimagerepo="hashicorp/http-echo"
 #        echo "::set-output name=repo::${myimagerepo}"
