@@ -55,17 +55,18 @@ jobs:
       - name: Switch out image tag
         run: |
           cd ${{ github.workspace }}/poc-git-tag/tags
-          kustomize edit set image ${{needs.build-mock-job.outputs.imagename}}/${{needs.build-mock-job.outputs.imagerepo}}/${{needs.build-mock-job.outputs.imagetag}}
+          echo ${{needs.build-mock-job.outputs.imagename}}
+#           kustomize edit set image ${{needs.build-mock-job.outputs.imagename}}/${{needs.build-mock-job.outputs.imagerepo}}/${{needs.build-mock-job.outputs.imagetag}}
 #          kustomize edit set image http-echo:hashicorp/http-echo:latest
 
 
-      - name: Commit and push
-        run: |
-          git config user.name "GitHub Actions pipeline "
-          git config user.email "<per@vipps.no>"
-          cd ${{ github.workspace }}
-          git commit -am "updates image tag"
-          git tag -d six
-          git push origin :refs/tags/six
-          git tag six
-          git push --tags origin ${{ github.ref }}
+#      - name: Commit and push
+#        run: |
+#          git config user.name "GitHub Actions pipeline "
+#          git config user.email "<per@vipps.no>"
+#          cd ${{ github.workspace }}
+#          git commit -am "updates image tag"
+#          git tag -d six
+#          git push origin :refs/tags/six
+#          git tag six
+#          git push --tags origin ${{ github.ref }}
