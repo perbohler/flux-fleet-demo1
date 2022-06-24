@@ -30,11 +30,11 @@ jobs:
       - id: imagebuildstep
         run: |
           myimagename="http-echo"
-#       echo "::set-output name=myname::http-echo"
-#        myimagerepo="hashicorp/http-echo"
-#        echo "::set-output name=repo::${myimagerepo}"
-#        myimagetag="alpine"
-#        echo "::set-output name=tag::${myimagetag}"
+          echo "::set-output name=myname::http-echo"
+          myimagerepo="hashicorp/http-echo"
+          echo "::set-output name=repo::${myimagerepo}"
+          myimagetag="alpine"
+          echo "::set-output name=tag::${myimagetag}"
 
   My-kustomize-job:
     name: this is my update image jobß
@@ -55,8 +55,8 @@ jobs:
       - name: Switch out image tag
         run: |
           cd ${{ github.workspace }}/poc-git-tag/tags
-          kustomize edit set image http-echo:hashicorp/http-echo:latest
-#          kustomize edit set image ${{needs.build-mock-job.outputs.imagename}}/${{needs.build-mock-job.outputs.imagerepo}}/${{needs.build-mock-job.outputs.imagetag}}
+#          kustomize edit set image http-echo:hashicorp/http-echo:latest
+          kustomize edit set image ${{needs.build-mock-job.outputs.imagename}}/${{needs.build-mock-job.outputs.imagerepo}}/${{needs.build-mock-job.outputs.imagetag}}
 
 
       - name: Commit and push
