@@ -22,19 +22,19 @@ jobs:
   build-mock-job:
     name: this job pretends to build an image
     runs-on: ubuntu-latest
-    outputs:
-      imagename: ${{ steps.imagebuildstep.outputs.myname }}
-      imagerepo: ${{ steps.imagebuildstep.outputs.repo }}
-      imagetag: ${{ steps.imagebuildstep.outputs.tag }}
+#    outputs:
+#      imagename: ${{ steps.imagebuildstep.outputs.myname }}
+#      imagerepo: ${{ steps.imagebuildstep.outputs.repo }}
+#      imagetag: ${{ steps.imagebuildstep.outputs.tag }}
     steps:
       - id: imagebuildstep
         run: |
         myimagename="http-echo"
-        echo "::set-output name=myname::http-echo"
-        myimagerepo="hashicorp/http-echo"
-        echo "::set-output name=repo::${myimagerepo}"
-        myimagetag="alpine"
-        echo "::set-output name=tag::${myimagetag}"
+#       echo "::set-output name=myname::http-echo"
+#        myimagerepo="hashicorp/http-echo"
+#        echo "::set-output name=repo::${myimagerepo}"
+#        myimagetag="alpine"
+#        echo "::set-output name=tag::${myimagetag}"
 
   My-kustomize-job:
     name: this is my update image jobß
