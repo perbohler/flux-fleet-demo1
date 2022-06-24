@@ -3,5 +3,7 @@ kind: Kustomization
 resources:
 - webserver-tagged-demo.yaml
 images:
+- name: http-echo:hashicorp/http-echo
+  newTag: latest
 - name: http-echo:percorp/http-echo
   newTag: latest
