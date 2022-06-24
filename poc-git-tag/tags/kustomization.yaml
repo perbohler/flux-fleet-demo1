@@ -2,4 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - webserver-tagged-demo.yaml
-
+images:
+- name: http-echo:hashicorp/http-echo
+  newTag: latest
