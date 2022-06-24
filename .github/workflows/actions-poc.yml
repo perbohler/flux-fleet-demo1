@@ -56,7 +56,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/poc-git-tag/tags
           echo ${{needs.build-mock-job.outputs.imagename}}/${{needs.build-mock-job.outputs.imagerepo}}/${{needs.build-mock-job.outputs.imagetag}}
-#           kustomize edit set image ${{needs.build-mock-job.outputs.imagename}}/${{needs.build-mock-job.outputs.imagerepo}}/${{needs.build-mock-job.outputs.imagetag}}
+#           kustomize edit set image ${{needs.build-mock-job.outputs.imagename}}:${{needs.build-mock-job.outputs.imagerepo}}:${{needs.build-mock-job.outputs.imagetag}}
 #          kustomize edit set image http-echo:hashicorp/http-echo:latest
 
 
